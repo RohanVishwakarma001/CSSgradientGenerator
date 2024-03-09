@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradiant</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: linear-gradient(
+          to right,
+          rgb(92, 145, 229),
+          rgb(152, 63, 198)
+        );
+      }
+      .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 30px;
+      }
+      button {
+        width: 100px;
+        height: 50px;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      #btn1 {
+        background-color: #051937;
+      }
+      #btn2 {
+        background-color: #008793;
+      }
+      h1 {
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        text-transform: capitalize;
+      }
+      .input {
+        width: 500px;
+        height: 80px;
+        border: none;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 5px solid #fff;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <div class="btn">
+          <button id="btn1">#051937</button>
+          <button id="btn2">#008793</button>
+        </div>
+        <h1>Click to copy CSS</h1>
+        <div class="input">
+          background-image: linner-gradient(to right, rgb(92, 145, 229),
+          rgb(152, 63, 198))
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const btn1 = document.querySelector("#btn1");
+      const btn2 = document.querySelector("#btn2");
+      const input = document.querySelector(".input");
+      let hexaCode = "0123456789ABCDEF";
+      var myColor1 = " rgb(92, 145, 229)";
+      var myColor2 = "rgb(152, 63, 198)";
+
+      const hexaCodeColor = () => {
+        let myColor = "#";
+        for (let i = 0; i < 6; i++) {
+          myColor += hexaCode[Math.floor(Math.random() * 16)];
+        }
+        return myColor;
+      };
+
+      btn1.addEventListener("click", () => {
+        myColor1 = hexaCodeColor();
+        console.log(myColor1);
+        document.body.style.backgroundImage = `linear-gradient(to right, ${myColor1}, ${myColor2}`;
+        input.innerHTML = `background-image: linear-gradient(to right, ${myColor1}, ${myColor2}`;
+        btn1.innerHTML = myColor1;
+      });
+      btn2.addEventListener("click", () => {
+        myColor2 = hexaCodeColor();
+        console.log(myColor2);
+        document.body.style.backgroundImage = `linear-gradient(to right, ${myColor1}, ${myColor2}`;
+        input.innerHTML = `background-image: linear-gradient(to right, ${myColor1}, ${myColor2}`;
+        btn2.innerHTML = myColor2;
+      });
+      input.addEventListener("click", () => {
+        navigator.clipboard.writeText(input.innerHTML);
+        alert("Copied!");
+      });
+    </script>
+  </body>
+</html>
